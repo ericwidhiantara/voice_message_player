@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+
 // ignore: library_prefixes
 import 'package:just_audio/just_audio.dart' as jsAudio;
 import 'package:voice_message_package/src/contact_noises.dart';
@@ -31,6 +32,8 @@ class VoiceMessage extends StatefulWidget {
     this.contactCircleColor = Colors.red,
     this.mePlayIconColor = Colors.black,
     this.contactPlayIconColor = Colors.black26,
+    this.audioColor = Colors.black26,
+    this.durationColor = Colors.black26,
     this.radius = 12,
     this.contactPlayIconBgColor = Colors.grey,
     this.meFgColor = const Color(0xffffffff),
@@ -53,7 +56,9 @@ class VoiceMessage extends StatefulWidget {
       contactCircleColor,
       mePlayIconColor,
       contactPlayIconColor,
-      contactPlayIconBgColor;
+      contactPlayIconBgColor,
+      audioColor,
+      durationColor;
   final bool played, me;
   Function()? onPlay;
   String Function(Duration duration)? formatDuration;
@@ -189,8 +194,7 @@ class _VoiceMessageState extends State<VoiceMessage>
             children: [
               /// show played badge
               if (!widget.played)
-                Widgets.circle(context, 1.5.w(),
-                    widget.me ? widget.meFgColor : widget.contactCircleColor),
+                Widgets.circle(context, 1.5.w(), widget.durationColor),
 
               /// show duration
               if (widget.showDuration)
@@ -200,8 +204,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                     widget.formatDuration!(widget.duration!),
                     style: TextStyle(
                       fontSize: 10,
-                      color:
-                          widget.me ? widget.meFgColor : widget.contactFgColor,
+                      color: widget.durationColor,
                     ),
                   ),
                 ),
@@ -212,7 +215,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                   _remainingTime,
                   style: TextStyle(
                     fontSize: 10,
-                    color: widget.me ? widget.meFgColor : widget.contactFgColor,
+                    color: widget.durationColor,
                   ),
                 ),
               ),
@@ -252,9 +255,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                     child: Container(
                       width: noiseWidth,
                       height: 6.w(),
-                      color: widget.me
-                          ? widget.meBgColor.withOpacity(.4)
-                          : widget.contactBgColor.withOpacity(.35),
+                      color: widget.audioColor,
                     ),
                   );
                 },
