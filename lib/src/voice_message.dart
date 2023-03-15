@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 
 // ignore: library_prefixes
 import 'package:just_audio/just_audio.dart' as jsAudio;
-import 'package:voice_message_package/src/contact_noises.dart';
 import 'package:voice_message_package/src/helpers/utils.dart';
 
 import './helpers/widgets.dart';
 import './noises.dart';
+import 'contact_noises.dart';
 import 'helpers/colors.dart';
 
 /// This is the main widget.
@@ -244,7 +244,11 @@ class _VoiceMessageState extends State<VoiceMessage>
         child: Stack(
           clipBehavior: Clip.hardEdge,
           children: [
-            widget.me ? const Noises() : const ContactNoise(),
+            widget.me
+                ? Noises(
+                    noiseColor: widget.audioColor,
+                  )
+                : const ContactNoise(),
             if (_audioConfigurationDone)
               AnimatedBuilder(
                 animation:
