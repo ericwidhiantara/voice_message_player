@@ -256,7 +256,7 @@ class _VoiceMessageState extends State<VoiceMessage>
                       width: noiseWidth,
                       height: 6.w(),
                       color: widget.me
-                          ? widget.audioColor.withOpacity(.4)
+                          ? widget.meBgColor.withOpacity(.4)
                           : widget.contactBgColor.withOpacity(.35),
                     ),
                   );

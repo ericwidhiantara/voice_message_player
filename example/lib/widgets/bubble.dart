@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 import 'package:voice_message_package/voice_message_package.dart';
@@ -39,6 +37,9 @@ class Bubble extends StatelessWidget {
       ? VoiceMessage(
           audioSrc: 'https://sounds-mp3.com/mp3/0012660.mp3',
           me: index == 5 ? false : true,
+          meBgColor: Colors.green,
+          audioColor: Colors.green,
+          durationColor: index == 5 ? Colors.black26 : Colors.white,
         )
       : Container(
           constraints: BoxConstraints(maxWidth: 100.w * .7),
